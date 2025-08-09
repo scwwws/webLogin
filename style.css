@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Gaya baru untuk form upload */
+.upload-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Jarak antar item */
+}
+
+.upload-section input[type="file"] {
+    display: none; /* Sembunyikan input file asli */
+}
+
+.upload-section .custom-file-upload {
+    background-color: #71b7e6; /* Warna tombol upload */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Agar bisa menerapkan padding dll. */
+}
+
+.upload-section .custom-file-upload:hover {
+    background-color: #9b59b6;
+}
+
+.upload-section .file-name-display {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    flex-grow: 1; /* Agar span mengambil sisa ruang */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Tampilkan ... jika nama file terlalu panjang */
+}
+
+.upload-section button[type="submit"] {
+    background-color: #2ecc71; /* Warna tombol submit */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-section button[type="submit"]:hover {
+    background-color: #27ae60;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #fff;
+}
+
+.login-container {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #fff;
+    font-size: 12px;
+}
+
+.btn-login {
+    background: #9b59b6;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    background: #71b7e6;
+    box-shadow: 0 0 15px rgba(113, 183, 230, 0.7);
+}
+
+.error-message {
+    background-color: #ff4757;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.welcome-box {
+    text-align: center;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+.welcome-box h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.welcome-box p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.welcome-box a {
+    color: #71b7e6;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #71b7e6;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.welcome-box a:hover {
+    background: #71b7e6;
+    color: #fff;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Bunga Majemuk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kalkulator Bunga Majemuk</h2>
+        <form id="bungaForm">
+            <label for="pokok">Jumlah Pokok (Rp):</label>
+            <input type="number" id="pokok" required min="0">
+            
+            <label for="bunga">Suku Bunga:</label>
+            <input type="number" id="bunga" step="0.01" required min="0" max="100">
+            
+            <label for="periodeBunga">Periode Suku Bunga:</label>
+            <select id="periodeBunga">
+                <option value="365">Per Hari</option>
+                <option value="52">Per Minggu</option>
+                <option value="12">Per Bulan</option>
+                <option value="1">Per Tahun</option>
+            </select>
+            
+            <label for="waktu">Jangka Waktu:</label>
+            <input type="number" id="waktu" required min="0" step="1">
+            
+            <label for="satuanWaktu">Satuan Waktu:</label>
+            <select id="satuanWaktu">
+                <option value="365">Hari</option>
+                <option value="52">Minggu</option>
+                <option value="12">Bulan</option>
+                <option value="1">Tahun</option>
+            </select>
+            
+            <label for="frekuensi">Frekuensi Bunga per Tahun:</label>
+            <select id="frekuensi">
+                <option value="365">Harian</option>
+                <option value="52">Mingguan</option>
+                <option value="12">Bulanan</option>
+                <option value="4">Kuartalan</option>
+                <option value="2">Semesteran</option>
+                <option value="1">Tahunan</option>
+            </select>
+            
+            <button type="button" onclick="hitungBungaMajemuk()">Hitung Bunga Majemuk</button>
+        </form>
+        <div id="hasil"></div>
+    </div>
+
+    <script>
+        function hitungBungaMajemuk() {
+            const pokok = parseFloat(document.getElementById('pokok').value);
+            const bunga = parseFloat(document.getElementById('bunga').value) / 100;
+            const periodeBunga = parseInt(document.getElementById('periodeBunga').value);
+            const waktu = parseFloat(document.getElementById('waktu').value);
+            const satuanWaktu = parseInt(document.getElementById('satuanWaktu').value);
+            const frekuensi = parseInt(document.getElementById('frekuensi').value);
+            
+            // Konversi bunga ke bunga tahunan
+            const bungaTahunan = bunga * periodeBunga;
+            
+            // Konversi waktu ke tahun
+            const waktuDalamTahun = waktu / satuanWaktu;
+            
+            const n = frekuensi;
+            const t = waktuDalamTahun;
+            const r = bungaTahunan;
+            
+            const nilaiAkhir = pokok * Math.pow((1 + r/n), (n * t));
+            const bungaMajemuk = nilaiAkhir - pokok;
+            
+            const hasil = document.getElementById('hasil');
+            hasil.innerHTML = `
+                <h3>Hasil Perhitungan:</h3>
+                <p><strong>Jumlah Pokok:</strong> Rp ${pokok.toLocaleString('id-ID', {maximumFractionDigits: 2})}</p>
+                <p><strong>Suku Bunga:</strong> ${(bunga * 100).toFixed(2)}% ${document.getElementById('periodeBunga').options[document.getElementById('periodeBunga').selectedIndex].text}</p>
+                <p><strong>Bunga Majemuk:</strong> Rp ${bungaMajemuk.toLocaleString('id-ID', {maximumFractionDigits: 2})}</p>
+                <p><strong>Nilai Akhir:</strong> Rp ${nilaiAkhir.toLocaleString('id-ID', {maximumFractionDigits: 2})}</p>
+                <p><strong>Jangka Waktu:</strong> ${waktu} ${document.getElementById('satuanWaktu').options[document.getElementById('satuanWaktu').selectedIndex].text}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
